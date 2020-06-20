@@ -1,0 +1,4 @@
+[submodule "master-warehouse-service"]
+	path = master-warehouse-service
+	url = git@github.com:strahinja16/master-warehouse-service.git
+	branch = master
