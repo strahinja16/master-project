@@ -2,3 +2,19 @@
 	path = master-warehouse-service
 	url = git@github.com:strahinja16/master-warehouse-service.git
 	branch = master
+[submodule "master-execution-service"]
+	path = master-execution-service
+	url = git@github.com:strahinja16/master-execution-service.git
+	branch = master
+[submodule "master-personnel-service"]
+	path = master-personnel-service
+	url = git@github.com:strahinja16/master-personnel-service.git
+	branch = master
+[submodule "master-api-gateway"]
+	path = master-api-gateway
+	url = git@github.com:strahinja16/master-api-gateway.git
+	branch = master
+[submodule "master-client"]
+	path = master-client
+	url = git@github.com:strahinja16/master-client.git
+	branch = master

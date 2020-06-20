@@ -1,0 +1,83 @@
+version: '3'
+
+services:
+  api-gateway:
+    restart: always
+    build: ./api-gateway
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./api-gateway:/usr/src/app
+      - /usr/src/app/node_modules
+      - ./proto:/usr/src/app/src/proto
+    depends_on:
+      - warehouse-service
+
+  warehouse-service:
+    restart: always
+    build: ./warehouse-service
+    ports:
+      - "3001:3000"
+      - "50051:50051"
+    volumes:
+      - ./warehouse-service:/usr/src/app
+      - /usr/src/app/node_modules
+      - ./proto:/usr/src/app/src/proto
+    depends_on:
+      - warehousedb
+
+  personnel-service:
+    restart: always
+    build: ./personnel-service
+    ports:
+      - "3002:3000"
+      - "50052:50051"
+    volumes:
+      - ./personnel-service:/usr/src/app
+      - /usr/src/app/node_modules
+      - ./proto:/usr/src/app/src/proto
+    depends_on:
+      - personneldb
+
+  execution-service:
+    restart: always
+    build: ./execution-service
+    ports:
+      - "3003:3000"
+      - "50053:50051"
+    volumes:
+      - ./execution-service:/usr/src/app
+      - /usr/src/app/node_modules
+      - ./proto:/usr/src/app/src/proto
+    depends_on:
+      - executiondb
+
+  warehousedb:
+    restart: always
+    image: postgres:12-alpine
+    ports:
+      - "5001:5432"
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=warehousedb
+
+  personneldb:
+    restart: always
+    image: postgres:12-alpine
+    ports:
+      - "5002:5432"
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=personneldb
+
+  executiondb:
+    restart: always
+    image: postgres:12-alpine
+    ports:
+      - "5003:5432"
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=executiondb
