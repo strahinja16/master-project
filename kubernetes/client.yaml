@@ -33,6 +33,7 @@ spec:
     spec:
       containers:
         - name: client
+          imagePullPolicy: Always
           stdin: true
           image: strahinja16/sir-client:1.0.8
           ports:
