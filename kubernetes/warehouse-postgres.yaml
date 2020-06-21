@@ -36,3 +36,11 @@ spec:
           envFrom:
             - secretRef:
                 name: warehouse-postgres-secret
+          volumeMounts:
+            - name: warehouse-volume
+              mountPath: /var/lib/postgresql/data
+              subPath: data
+      volumes:
+        - name: warehouse-volume
+          persistentVolumeClaim:
+            claimName: warehouse-pv

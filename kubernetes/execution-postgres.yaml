@@ -36,3 +36,11 @@ spec:
           envFrom:
             - secretRef:
                 name: execution-postgres-secret
+          volumeMounts:
+            - name: execution-volume
+              mountPath: /var/lib/postgresql/data
+              subPath: data
+      volumes:
+        - name: execution-volume
+          persistentVolumeClaim:
+            claimName: execution-pv
