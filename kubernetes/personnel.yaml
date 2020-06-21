@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: personnel
+  labels:
+    app: personnel
+spec:
+  type: ClusterIP
+  selector:
+    app: personnel
+  ports:
+    - name: personnel-express
+      port: 3000
+      targetPort: 3000
+    - name: personnel-grpc
+      port: 50051
+      targetPort: 50051
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: personnel
+  labels:
+    app: personnel
+spec:
+  selector:
+    matchLabels:
+      app: personnel
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: personnel
+    spec:
+      containers:
+        - name: personnel
+          image: strahinja16/sir-personnel-service:1.0.1

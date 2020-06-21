@@ -2,7 +2,6 @@ apiVersion: v1
 kind: Service
 metadata:
   name: warehouse
-  namespace: dev
   labels:
     app: warehouse
 spec:
@@ -22,7 +21,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: warehouse
-  namespace: dev
   labels:
     app: warehouse
 spec:
