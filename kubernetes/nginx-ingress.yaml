@@ -5,6 +5,9 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      rewrite /$1 break;
+      rewrite ^/services/api-gateway/(.*)$ /$1 break;
 spec:
   rules:
     - http:
