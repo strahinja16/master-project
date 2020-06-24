@@ -36,3 +36,10 @@ spec:
       containers:
         - name: execution
           image: strahinja16/sir-execution-service:1.0.0
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            failureThreshold: 2

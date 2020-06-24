@@ -36,3 +36,10 @@ spec:
       containers:
         - name: personnel
           image: strahinja16/sir-personnel-service:1.0.1
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            failureThreshold: 2
